@@ -1,0 +1,75 @@
+.navbar{
+    background-color: rgb(142, 142, 235);
+    justify-content: center;
+}
+.nav-link{
+    color: white;
+    font-size: 1.5em;
+}
+.nav-link:hover{
+    color: red;
+}
+
+.nav-link:focus{
+    color: red;
+}
+.active{
+    color: red;
+}
+
+.title-recent{
+    font-size: 2em;
+    font-weight: bold;
+}
+.annonces{
+    padding: 10em 10em;
+}
+
+.contenu{
+    display: flex;
+    
+    
+
+}
+.details{
+    
+   
+    box-shadow: 1px 5px 12px  black;
+    margin-left: 5em;
+    display: flex;
+    position: relative;
+    bottom: 120em;
+    right: 2em;
+    background-color: white;
+    z-index: 4;
+
+}
+.article{
+   position: relative;
+   z-index: 2;
+   margin-left: 2.5em;
+}
+
+.close{
+    display: flex;
+    float: right;
+    z-index: 6;
+    position: relative;
+    top: -100em;
+    left: -2em;
+}
+.img-article img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.cacher{
+    visibility: hidden;
+}
+
+.menu-v:hover{
+    color: red;
+    border: 2px solid black;
+}

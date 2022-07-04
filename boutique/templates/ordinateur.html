@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+  {% include 'menu.html' %}
+</div>
+<div class="container-fluid row " style="margin-top: 6em;">
+  <div class="col-lg-6 col-md-8 ">
+    <!-- ========== Start formulaire de recherche ========== -->
+    <form action=" {% url 'recherche' %}" method="GET" class="row">
+      {% csrf_token %}
+      <input type="text" name="mots" id="" placeholder="rechercher un produit"
+        class="col-lg-8 col-md-9 form-control-sm " required>
+      <input type="submit" value="rechercher" class="col-lg-4 col-md-3 btn btn-primary">
+
+
+    </form>
+    <!-- ========== End formulaire de recherche ========== -->
+
+
+  </div>
+  <!-- ========== Start pannier ========== -->
+  <div class="offset-lg-4 offset-md-2 offset-9 col-lg-2 col-md-2 mt-lg-0 mt-md-0 mt-4">
+    {% if user.is_authenticated %}
+    <span class=""> <a href="{% url 'panier' %} "><img src="{% static 'img/cart.svg' %}" style="z-index: 2;" alt=""
+          width="40px"></a> <sup class="text-white"
+        style="position: relative;top: -1.3em;left: -0.9em;font-size: 1em; border:2px solid red; border-radius: 9em;background-color: red;padding:auto;">
+        {% if nbr %}
+        {{ nbr }}
+        {% else %}
+        0
+        {% endif %}
+      </sup></span>
+    {% else %}
+    <span class=""> <a href="{% url 'connexion' %} "><img src="{% static 'img/cart.svg' %}" style="z-index: 2;" alt=""
+          width="40px"></a> <sup class="text-white"
+        style="position: relative;top: -1.3em;left: -0.9em;font-size: 1em; border:2px solid red; border-radius: 9em;background-color: red;padding:auto;">0</sup></span>
+
+    {% endif %}
+  </div>
+  <!-- ========== End pannier ========== -->
+</div>
+<!--menu trié-->
+
+{% include 'menu_tries.html' %}
+
+<!--fin menu trié-->
+
+
+<div class="col-12 col-md-10 col-lg-10">
+  <div class="container-fluid">
+    <div class="row ">
+      <span class='ajoute text-center  text-white' style="font-size:1.5em;"></span>
+
+      <!--la boucle pour la repetion des elements-->
+      {% for i in ordinateur %}
+
+      <div class="col-sm-12 col-md-4 col-lg-4" style="margin-top: 1em;" height="200" class="img-fluid">
+        <div class="card h-100">
+          <a href="{% url 'details' i.id %}">
+            <img src="{{i.img.url}}" class="card-img-top" alt="..." height="200px" /></a>
+          <div class="card-body">
+            <h5 class="card-title">{{i.designation}}</h5>
+            <p class="card-text">
+              {{i.description}} <br>
+            </p>
+            <p>prix : {{i.prix}} FG</p>
+
+          </div>
+
+          <div class="card-footer text-center ">
+            <button class="btn-success text-center">
+              <a href="{% url 'details' i.id %}" class="card-link " style="color: white; ">Details</a>
+            </button>
+            <a href="#" meta-data="{% url 'ajout_commande'  %}" a_id='{{i.id}}' class="card-link ajout-commande "
+              style="color: white; ">
+              <img src="{% static 'img/cart-plus.svg' %}" width="36px" alt=""></a>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <!--fin de la boucle-->
+
+
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}

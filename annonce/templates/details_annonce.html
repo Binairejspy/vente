@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+annonces
+{% endblock %}
+{% block content %}
+ <div class="container-fluid">
+    {% include 'menu.html' %}
+</div>
+<div class="" style="margin-top: 6em;">
+<div class="row">
+    <div class="col-lg-4 col-md-4 text-center " style="font-size: 1.8em;">
+      <a href="{{ vendeur_profil.url }}" target="_blank">  <img src="{{ vendeur_profil.url }}" class="img-fluid rounded-circle " alt="" width="125"><br></a>
+        {{ vendeur_prenom }} <br>
+        {{ vendeur_nom }} <br>
+        {{ vendeur_numero }} <br>
+        {{ vendeur_email }} <br>
+    </div>
+    <div class="col-lg-4 col-md-4 text-center mt-2">
+       
+      <a href="{{ id_annonce.img_annonce.url }}" target="_blank">  <img src=" {{ id_annonce.img_annonce.url }}" alt="" class="img-fluid"></a>
+    </div>
+    <div class="col-lg-4 col-md-4 text-center">
+        {{ id_annonce.prix_annonce }} GNF <br>
+        {{ id_annonce.nature }} <br>
+        {{ id_annonce.desc_annonce }}
+    </div>
+</div>
+</div>
+{% include 'footer.html'%}
+
+{% endblock%}

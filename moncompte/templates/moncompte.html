@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Contact
+{% endblock %}
+{% block content %}
+
+{% include 'menu.html' %}
+
+<div class="container-fluid " style="margin-top:8em;margin-bottom: 8em;">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 " style="box-shadow: 2px 2px 6px black; text-align: center;padding: none;">
+      <img src="{{ info.profil.url }}" class="img-thumbnail" alt="" width="280px"><br>
+      <p class="text-capitalize mt-2">{{ info.nomclient }} {{ info.prenomclient }} </p>
+      <p class="btn btn-info" style="width: 18em;">information personnelle</p><br>
+      <p class="btn btn-success" style="width: 18em;">Mes Publications</p><br>
+      <p class="btn btn-primary" style="width: 18em;">Mes Annonces</p><br>
+      <p class="btn btn-danger" style="width: 18em;">Paramettre du compte</p><br>
+
+      <a href="{% url 'ajout_annonce' %}" class="">
+        Ajouter des Annonces
+
+      </a><br>
+      <a href="" class="">
+        Ajouter des Publications
+
+      </a><br>
+
+    </div>
+    <div class="col-lg-8 col-md-8">
+      <span class="text-capitalize mt-2">{{ info.nomclient }} {{ info.prenomclient }} </p>
+        <span>nom utilisateur : {{ info.nomutilisateur }}</span><br>
+        <span>mon Email : {{ info.emailclient }}</span><br>
+        <span>nom utilisateur : {{ info.numero }}</span><br>
+
+        <p class="bg-success text-center text-white">Mes Publications:</p>
+
+        {% for i in concept reversed %}
+        <div class="row">
+          <div class="col-lg-3 col-md-3">
+            <img src=" {{ i.img_concept }}" class="img-fluid" alt="" width="250px">
+          </div>
+          <div class="col-lg-9">{{ i.description_concept }}</div>
+
+        </div>
+        {% empty %}
+        <a href="" class="btn btn-secondary">
+          Ajouter des publications
+
+        </a>
+        {% endfor %}
+
+        <p class="bg-primary text-center mt-2 text-white">Mes annonces</p>
+        <div class="row">
+
+          {% for i in annonce_user reversed %}
+
+
+          <div class="col-sm-12 col-md-4 col-lg-3" style="margin-top: 1em;">
+            <div class="card h-100 ">
+              <a href="{% url 'details_annonce' i.id %}">
+                <img src="{{i.img_annonce.url}}" class="card-img-top" alt="..." /></a>
+              <div class="card-body">
+                <h5 class="card-title">{{i.desi_annonce}}</h5>
+                <p class="card-text">
+                  <!-- {{i.description|truncatewords:10}} <br>-->
+                </p>
+                <p>prix : {{i.prix_annonce}} FG</p>
+                <p class="text-danger">{{i.nature}} </p>
+              </div>
+              <div class="card-footer text-center bg-dark">
+                <button class="btn-success text-center">
+                  <a href="{% url 'details_annonce' i.id %}" class="card-link " style="color: white; ">aperçu</a>
+                </button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          {% endfor %}
+
+
+        </div>
+    </div>
+  </div>
+</div>
+
+{% include 'footer.html'%}
+{% endblock %}

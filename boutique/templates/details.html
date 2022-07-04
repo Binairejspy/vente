@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Boutique
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+    {% include 'menu.html' %}
+</div>
+
+<div class="container-fluid mb-4 " style="margin-top: 6em; ">
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 text-center">
+            <a href="{{pointe.img.url}}" target="_blank"><img src="{{pointe.img.url}}" alt="" height="400"
+                    class="img-fluid"></a>
+            <p>
+                {{pointe.nom}}
+            </p>
+
+        </div>
+        <div class="col-12 col-md-6 col-lg-6">
+            <p class="text-primary" style="font-size: 1em;"> PRIX : {{pointe.prix}} GNF </p>
+            <p>
+                {{pointe.description}}
+            </p>
+            <div class="row">
+                <div class="col-6 col-lg-6 col-md-6">
+                    <button class="btn-success"> <a href="{{id.url_amazon}}" class="card-link btn "
+                            style="color: white;" target="_blank">amazon</a></button>
+
+                </div>
+
+                <div class="col-6 col-lg-6 col-md-6">
+                    {% if user.is_authenticated %}
+                    <button class="btn-success"> <a href="{% url 'one_commande' pointe.id %}" class="card-link btn "
+                            style="color: white;">commandez</a></button>
+                    {% else %}
+                    <button class="btn-success"> <a href="{% url 'connexion' %}" class="card-link btn"
+                            style="color: white;">commandez</a></button>
+                    {% endif %}
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+{% endblock %}
